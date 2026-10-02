@@ -1,60 +1,210 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HMO Compliance Tracker 2026 for UK Landlords | Excel & Google Sheets</title>
-  <meta name="description" content="Track HMO certificates, licence conditions and fire-safety checks in one spreadsheet, updated for the Renters' Rights Act. Excel and Google Sheets.">
+  <title>Landlord Compliance Tracker 2026 | PRS Database readiness + HMO compliance | Excel &amp; Google Sheets</title>
+  <meta name="description" content="Get every rental property ready for England's PRS Database, then keep certificates, HMO licence conditions and Renters' Rights Act duties on track. One spreadsheet for Excel and Google Sheets. £15.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Landlord Compliance Tracker 2026 — PRS Database readiness + HMO compliance">
+  <meta property="og:description" content="Get every rental property ready for the PRS Database, then keep certificates, licence conditions and Renters' Rights Act duties on track. Excel and Google Sheets.">
+  <meta property="og:image" content="https://innovatedigi.github.io/landlord-tracker/assets/cover.png">
+  <meta property="og:url" content="https://innovatedigi.github.io/landlord-tracker/">
+  <meta name="twitter:card" content="summary_large_image">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1a1a2e; background: #fafafa; }
-    .container { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
-    header { text-align: center; padding: 3rem 0 2rem; }
-    h1 { font-size: 2.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; color: #1a1a2e; }
-    .subtitle { font-size: 1.25rem; color: #4a4a6a; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .badge { display: inline-block; background: #e8f5e9; color: #2e7d32; padding: 0.5rem 1rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; margin-bottom: 2rem; }
-    .cta-button { display: inline-block; background: #1a1a2e; color: white; padding: 1rem 2rem; border-radius: 8px; font-size: 1.125rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
-    .cta-button:hover { background: #2d2d4a; }
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
-    .feature { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #eee; }
-    .feature h3 { font-size: 1.125rem; margin-bottom: 0.5rem; color: #1a1a2e; }
-    .feature p { color: #666; font-size: 0.9375rem; }
-    .social-proof { background: white; padding: 2rem; border-radius: 12px; margin: 2rem 0; border: 1px solid #eee; }
-    .social-proof h2 { font-size: 1.5rem; margin-bottom: 1rem; text-align: center; }
-    .testimonial { font-style: italic; color: #444; margin: 1rem 0; padding-left: 1rem; border-left: 3px solid #1a1a2e; }
-    .price { text-align: center; padding: 2rem; background: #1a1a2e; color: white; border-radius: 12px; margin: 2rem 0; }
-    .price .amount { font-size: 3rem; font-weight: 700; }
-    .price .period { font-size: 1rem; opacity: 0.7; }
-    .guarantee { text-align: center; color: #666; font-size: 0.875rem; margin-top: 1rem; }
-    footer { text-align: center; padding: 2rem; color: #999; font-size: 0.875rem; }
+    :root { --ink:#14213d; --muted:#5b6475; --line:#e4e7ee; --bg:#f7f8fb; --accent:#0b6e4f; --accent-dark:#095a41; --amber:#b7791f; --red:#b42318; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:var(--ink); background:#fff; line-height:1.6; }
+    a { color:var(--accent); }
+    .wrap { max-width:980px; margin:0 auto; padding:0 20px; }
+    .top { border-bottom:1px solid var(--line); padding:14px 0; font-size:.95rem; }
+    .top .wrap { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .brand { font-weight:700; letter-spacing:.2px; }
+    .top small { color:var(--muted); }
+    header.hero { background:var(--bg); padding:56px 0 40px; text-align:center; border-bottom:1px solid var(--line); }
+    .pill { display:inline-block; background:#e6f4ee; color:var(--accent-dark); font-weight:600; font-size:.85rem; padding:6px 14px; border-radius:999px; margin-bottom:18px; }
+    h1 { font-size:2.5rem; line-height:1.15; margin-bottom:14px; }
+    .sub { font-size:1.2rem; color:var(--muted); max-width:700px; margin:0 auto 26px; }
+    .btn { display:inline-block; background:var(--accent); color:#fff; font-weight:700; font-size:1.1rem; padding:15px 30px; border-radius:8px; text-decoration:none; }
+    .btn:hover { background:var(--accent-dark); }
+    .btn.alt { background:#fff; color:var(--ink); border:2px solid var(--ink); }
+    .under { margin-top:12px; color:var(--muted); font-size:.95rem; }
+    .shot { margin:34px auto 0; max-width:900px; }
+    .shot img { width:100%; height:auto; border:1px solid var(--line); border-radius:10px; box-shadow:0 10px 30px rgba(20,33,61,.10); display:block; }
+    section { padding:52px 0; border-bottom:1px solid var(--line); }
+    h2 { font-size:1.75rem; margin-bottom:8px; }
+    .lead { color:var(--muted); margin-bottom:26px; max-width:720px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:18px; }
+    .card { border:1px solid var(--line); border-radius:10px; padding:20px; background:#fff; }
+    .card h3 { font-size:1.08rem; margin-bottom:6px; }
+    .card p { color:var(--muted); font-size:.97rem; }
+    .key { display:flex; gap:18px; flex-wrap:wrap; margin-top:22px; font-size:.95rem; }
+    .dot { display:inline-block; width:12px; height:12px; border-radius:50%; margin-right:7px; vertical-align:middle; }
+    ul.plain { list-style:none; }
+    ul.plain li { padding:9px 0 9px 28px; position:relative; border-bottom:1px solid var(--line); }
+    ul.plain li:before { content:"✓"; position:absolute; left:2px; color:var(--accent); font-weight:700; }
+    .two { display:grid; grid-template-columns:1.1fr .9fr; gap:34px; align-items:start; }
+    .box { background:var(--ink); color:#fff; border-radius:12px; padding:28px; text-align:center; }
+    .box .price { font-size:3rem; font-weight:800; line-height:1.1; }
+    .box p { color:#c9d1e3; margin:8px 0 18px; }
+    .box .btn { background:#fff; color:var(--ink); }
+    .box small { display:block; margin-top:12px; color:#aab4cb; }
+    .agents { background:var(--bg); }
+    .steps { counter-reset:s; list-style:none; margin-top:14px; }
+    .steps li { counter-increment:s; padding:8px 0 8px 40px; position:relative; }
+    .steps li:before { content:counter(s); position:absolute; left:0; top:8px; width:26px; height:26px; border-radius:50%; background:var(--ink); color:#fff; font-size:.85rem; font-weight:700; display:flex; align-items:center; justify-content:center; }
+    table.dates { width:100%; border-collapse:collapse; font-size:.95rem; }
+    table.dates th, table.dates td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); }
+    table.dates th { background:var(--bg); }
+    details { border-bottom:1px solid var(--line); padding:14px 0; }
+    summary { font-weight:600; cursor:pointer; }
+    details p { color:var(--muted); margin-top:8px; }
+    .law { font-size:.95rem; color:var(--muted); }
+    .law li { margin:6px 0 6px 20px; }
+    footer { padding:30px 0 46px; color:var(--muted); font-size:.9rem; }
+    footer p { margin-bottom:8px; }
+    @media (max-width:760px) { h1 { font-size:1.95rem; } .two { grid-template-columns:1fr; } header.hero { padding:38px 0 28px; } }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <span class="badge">Updated edition for the Renters' Rights Act — launching this weekend</span>
-      <h1>HMO Compliance Tracker</h1>
-      <p class="subtitle">One place to track every HMO certificate, licence condition and fire-safety check — rebuilt for the rules in force since 1 May 2026. Excel and Google Sheets.</p>
-      <a href="mailto:hello@innovateuk.uk?subject=HMO%20Compliance%20Tracker%202026" class="cta-button">Email me when it's ready</a>
-    </header>
+  <div class="top"><div class="wrap">
+    <span class="brand">Innovate Digital</span>
+    <small>Independent business. Not affiliated with Innovate UK or UKRI.</small>
+  </div></div>
 
-    <div class="features">
-      <div class="feature"><h3>Certificates & inspections</h3><p>Gas safety, EICR, EPC, fire risk assessment, alarms, emergency lighting and more — each with its next due date.</p></div>
-      <div class="feature"><h3>HMO licence conditions</h3><p>Licence dates, permitted occupancy and a conditions checklist for every property.</p></div>
-      <div class="feature"><h3>Fire safety log</h3><p>A simple record of alarm tests, emergency lighting tests and fire door checks.</p></div>
-      <div class="feature"><h3>Renters' Rights Act</h3><p>Section 21 has gone. Track the duties that replaced it, per tenancy.</p></div>
+  <header class="hero"><div class="wrap">
+    <span class="pill">PRS Database registration is due to open on 15 December 2026, West Midlands first</span>
+    <h1>Get every rental property ready for the PRS Database</h1>
+    <p class="sub">One spreadsheet that collects what the draft regulations ask for, property by property, shows what is missing, and then keeps your certificates, HMO licence conditions and Renters' Rights Act duties on track.</p>
+    <a class="btn" href="https://buy.stripe.com/cNidR83O39bVcEH2pc28801">Get the tracker — £15</a>
+    <p class="under">Excel and Google Sheets · one-off payment · instant download</p>
+    <div class="shot"><img src="assets/preview-prs.png" alt="PRS Database Readiness sheet showing each property's region, registration deadline and which required items are ready" width="1280" height="720"></div>
+  </div></header>
+
+  <section><div class="wrap">
+    <h2>What the PRS Database will ask you for</h2>
+    <p class="lead">Every private landlord in England will have to register each let property on the new Private Rented Sector Database ("Register your rental property"). The draft regulations, laid before Parliament on 9 September 2026, set out the timetable and the information required.</p>
+    <div class="two">
+      <div>
+        <table class="dates">
+          <thead><tr><th>Region</th><th>Opens</th><th>Register by</th></tr></thead>
+          <tbody>
+            <tr><td>West Midlands</td><td>15 Dec 2026</td><td>14 Mar 2027</td></tr>
+            <tr><td>East of England</td><td>15 Jan 2027</td><td>14 Apr 2027</td></tr>
+            <tr><td>East Midlands</td><td>15 Feb 2027</td><td>14 May 2027</td></tr>
+            <tr><td>South East</td><td>15 Mar 2027</td><td>14 Jun 2027</td></tr>
+            <tr><td>Yorkshire and Humber</td><td>15 Apr 2027</td><td>14 Jul 2027</td></tr>
+            <tr><td>North West</td><td>15 May 2027</td><td>14 Aug 2027</td></tr>
+            <tr><td>North East</td><td>15 Jun 2027</td><td>14 Sep 2027</td></tr>
+            <tr><td>London</td><td>15 Jul 2027</td><td>14 Oct 2027</td></tr>
+            <tr><td>South West</td><td>15 Aug 2027</td><td>14 Nov 2027</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <ul class="plain">
+          <li>Licence type and licence numbers, bedrooms, occupants and households.</li>
+          <li>Gas safety record and its issue date; EICR and its expiry date; EPC or exemption.</li>
+          <li>Rent, payment frequency, whether bills are included, and furnishing.</li>
+          <li>Freeholder, superior landlord and property manager contact details.</li>
+          <li>Changes must be updated within 28 days, and entries renewed every year.</li>
+        </ul>
+        <p class="law" style="margin-top:14px">The Readiness sheet has one row per property. Pick the region and it shows your opening date and deadline, counts what is ready and what is outstanding, and gives you the 28-day update date whenever something changes.</p>
+      </div>
     </div>
+    <p class="law" style="margin-top:16px">These regulations are still in draft and subject to Parliamentary approval, so dates and details may change. Sources: <a href="https://www.legislation.gov.uk/ukdsi/2026/9780348286861" rel="noopener">draft Private Rented Sector Database Regulations 2026</a> and the <a href="https://www.nrla.org.uk/resources/renters-rights/landlord-database-register-your-rental-property-service" rel="noopener">NRLA summary</a>.</p>
+  </div></section>
 
-    <div class="price">
-      <div class="amount">£15</div>
-      <div class="period">One-time payment • Excel + Google Sheets</div>
+  <section><div class="wrap">
+    <h2>What else it tracks</h2>
+    <p class="lead">Enter the date a check was last done. The tracker works out when it is next due and colours it for you.</p>
+    <div class="grid">
+      <div class="card"><h3>Certificates and inspections</h3><p>Gas safety, EICR, EPC, fire risk assessment, alarm servicing, emergency lighting, extinguishers, PAT, legionella and more, one row per property and check.</p></div>
+      <div class="card"><h3>Fire safety log</h3><p>A dated record of alarm tests, emergency lighting tests and fire door checks, with defects and what was done about them.</p></div>
+      <div class="card"><h3>HMO licence and conditions</h3><p>Licence dates, permitted and actual occupancy, a conditions checklist for each property and a room-size check.</p></div>
+      <div class="card"><h3>Tenancies and the Renters' Rights Act</h3><p>Deposit protection, Right to Rent follow-ups, the Information Sheet, rent-increase dates and section 13 notice timing, per tenancy.</p></div>
+      <div class="card"><h3>Dashboard</h3><p>Overdue, due within 30 days, due within 60 days and OK, for the whole portfolio and for each property, plus the next deadlines in date order.</p></div>
+      <div class="card"><h3>Reference sheet</h3><p>Each requirement with its usual interval and a link to the official source, so you can check it yourself.</p></div>
     </div>
+    <div class="key">
+      <span><span class="dot" style="background:var(--red)"></span>Red: overdue</span>
+      <span><span class="dot" style="background:var(--amber)"></span>Amber: due within 60 days</span>
+      <span><span class="dot" style="background:var(--accent)"></span>Green: OK</span>
+    </div>
+    <div class="shot"><img src="assets/preview-dashboard.png" alt="Dashboard showing overdue, due-soon and OK checks for each property" width="1280" height="720" loading="lazy"></div>
+    <div class="shot"><img src="assets/preview-log.png" alt="Compliance log sheet with one row per property and check, showing next due dates and status" width="1280" height="720" loading="lazy"></div>
+  </div></section>
 
-    <p class="guarantee">No subscription. An organisational tool, not legal advice.</p>
+  <section><div class="wrap two">
+    <div>
+      <h2>What you get</h2>
+      <ul class="plain">
+        <li>The tracker as an .xlsx file. Opens in Excel 2016 or later and uploads straight into Google Sheets.</li>
+        <li>No macros and no add-ins. Your data stays in your own file.</li>
+        <li>Two sample properties so you can see how it works, and one line telling you how to clear them.</li>
+        <li>A short quick-start guide (PDF).</li>
+        <li>A two-page landlord guide to the PRS Database (PDF).</li>
+        <li>A printable weekly fire alarm test log (PDF).</li>
+      </ul>
+      <p class="law" style="margin-top:18px">Built for England. Landlords in Wales, Scotland and Northern Ireland can use the certificate and fire-safety sheets, but the tenancy rules differ there.</p>
+    </div>
+    <div class="box">
+      <div class="price">£15</div>
+      <p>One-off. No subscription.</p>
+      <a class="btn" href="https://buy.stripe.com/cNidR83O39bVcEH2pc28801">Get the tracker</a>
+      <small>Not right for you? Email us within 14 days for a refund.</small>
+    </div>
+  </div></section>
 
-    <footer>
-      InnovateDigi — an independent business, not affiliated with Innovate UK or UKRI • <a href="mailto:hello@innovateuk.uk" style="color: #999;">Support</a>
-    </footer>
-  </div>
+  <section class="agents" id="agents"><div class="wrap two">
+    <div>
+      <h2>Letting agents and property businesses: put your name on it</h2>
+      <p class="lead">Your landlords will have to register each property themselves, and they will ask you for the details. The agency pack gives you everything to send them, in your own branding.</p>
+      <ul class="plain">
+        <li>The tracker with your business name, logo and contact details on every sheet.</li>
+        <li>A two-page landlord guide to the PRS Database in the same branding (PDF).</li>
+        <li>A ready-to-send email to your landlords explaining what you need from them.</li>
+      </ul>
+      <ol class="steps">
+        <li>Pay once and tell us the business name to show.</li>
+        <li>Reply to our confirmation email with your logo and contact details.</li>
+        <li>We email your branded pack within 24 hours.</li>
+      </ol>
+      <p class="law" style="margin-top:14px">The licence covers unlimited use with your own landlords and clients. It does not cover reselling the tracker.</p>
+    </div>
+    <div class="box">
+      <div class="price">£49</div>
+      <p>One-off. Unlimited use with your own landlords.</p>
+      <a class="btn" href="https://buy.stripe.com/8x2eVcbgvafZ9sve7U28800">Get the agency pack</a>
+      <small>Questions first? <a href="mailto:hello@innovateuk.uk?subject=White-label%20HMO%20tracker" style="color:#fff">hello@innovateuk.uk</a></small>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <h2>Why this edition</h2>
+    <p class="lead">The private rented sector in England changed on 1 May 2026. A tracker written before then is tracking the wrong things.</p>
+    <ul class="law">
+      <li>Section 21 "no fault" evictions were abolished and tenancies became periodic.</li>
+      <li>Rent can go up once a year, using the section 13 procedure with at least two months' notice.</li>
+      <li>Maximum civil penalties for certain housing offences rose from £30,000 to £40,000.</li>
+      <li>Registration on the Private Rented Sector Database is due to open region by region from 15 December 2026, under regulations that are still in draft.</li>
+    </ul>
+    <p class="law" style="margin-top:12px">Source: <a href="https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap/implementing-the-renters-rights-act-2025-our-roadmap-for-reforming-the-private-rented-sector" rel="noopener">GOV.UK, Implementing the Renters' Rights Act 2025: our roadmap</a>.</p>
+  </div></section>
+
+  <section><div class="wrap">
+    <h2>Questions</h2>
+    <details><summary>Does it work in Google Sheets?</summary><p>Yes. Upload the .xlsx to Google Drive and open it with Google Sheets. The formulas, dropdowns and colours carry over. It uses only functions that exist in both Excel and Sheets.</p></details>
+    <details><summary>Is this legal advice?</summary><p>No. It is an organisational tool. Requirements vary by council and by licence, so check yours with your local authority or a qualified adviser. The Reference sheet links to the official sources.</p></details>
+    <details><summary>How many properties can it handle?</summary><p>The compliance log has working formulas for 1,000 rows, which is roughly 80 properties at a dozen checks each. The readiness and properties sheets hold 100 properties.</p></details>
+    <details><summary>Can I get a refund?</summary><p>Yes. If it is not right for you, email hello@innovateuk.uk within 14 days of buying and we will refund you.</p></details>
+    <details><summary>Who are you?</summary><p>Innovate Digital, a small independent business. We are not affiliated with Innovate UK or UKRI, and we are not solicitors. The tracker is produced with AI assistance and checked against official sources.</p></details>
+  </div></section>
+
+  <footer><div class="wrap">
+    <p><strong>Innovate Digital</strong> · Landlord Compliance Tracker 2026 · <a href="mailto:hello@innovateuk.uk">hello@innovateuk.uk</a></p>
+    <p>Independent business. Not affiliated with Innovate UK or UKRI. This tracker is an organisational tool, not legal advice.</p>
+    <p>© 2026 Innovate Digital</p>
+  </div></footer>
 </body>
 </html>
