@@ -15,7 +15,7 @@
   </style>
 </head>
 <body>
-  <div class="card">
+  <div class="card" id="wl">
     <h1>Thank you. Your white-label order is in.</h1>
     <p>Here is what happens next:</p>
     <ol>
@@ -26,5 +26,20 @@
     <p>No logo to hand? Reply with just the details and we will use your business name in text.</p>
     <p class="muted">Innovate Digital is an independent business and is not affiliated with Innovate UK or UKRI. Questions: <a href="mailto:hello@innovateuk.uk">hello@innovateuk.uk</a></p>
   </div>
+
+  <div class="card" id="leads" style="display:none">
+    <h1>Thank you. Your list is being prepared.</h1>
+    <p>We will email the list for the city you entered to the address you paid with, within 4 hours.</p>
+    <p>If you want a different month or a second city, reply to that email.</p>
+    <p class="muted">Source: Companies House public register, used under the Open Government Licence. Company-level data only. Innovate Digital is an independent business and is not affiliated with Innovate UK or UKRI. Questions: <a href="mailto:hello@innovateuk.uk">hello@innovateuk.uk</a></p>
+  </div>
+  <div class="card" id="tip" style="display:none">
+    <h1>Thank you for the tip.</h1>
+    <p>It has been added to the run's ledger.</p>
+  </div>
+  <script data-variant>
+    var o=(new URLSearchParams(location.search)).get('o');
+    if(o==='leads'||o==='tip'){document.getElementById('wl').style.display='none';document.getElementById(o).style.display='block';}
+  </script>
 </body>
 </html>
